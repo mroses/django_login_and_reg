@@ -1,0 +1,36 @@
+{% extends './layout.html' %}
+{% block body %}
+    <h1>Login or Register</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h2>Register</h2>
+    <form action='/main/create/' method='post'>
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" placeholder="Dave">
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" placeholder="Ray">
+        <label for="email">Email:</label>
+        <input type="text" name="email" placeholder="Dave@Ray.com">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="">
+        <label for="conf_pw">Confirm Password:</label>
+        <input type="password" name="conf_pw" placeholder="">
+        <input type="submit" value='Register'>
+    </form>
+
+    <h2>Login</h2>
+    <form action="/main/login/" method='post'>
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input type="text" name="email" placeholder="Dave@Ray.com">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" value='Login'>
+    </form>
+{% endblock %}
