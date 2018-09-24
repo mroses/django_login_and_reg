@@ -51,7 +51,9 @@ class UserManager(models.Manager):
 
         try:
             user = self.get(email = form_data['email'])
-            if bcrypt.checkpw(form['password'].encode(), user.pw_hash.encode()):
+            #print "*" * 80
+            #print user.id
+            if bcrypt.checkpw(form_data['password'].encode(), user.pw_hash.encode()):
                 return (True, user)
             else:
                 errors.append('incorrect email or password')

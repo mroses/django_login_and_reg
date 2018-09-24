@@ -40,7 +40,7 @@ def show(request):
         'user': user
     }
     '''
-    return render(request, '/main/show.html', context)
+    return render(request, 'main/show.html')
 
 def edit(request, user_id):
     pass
@@ -56,6 +56,7 @@ def login(request):
         return redirect('/main/new')
 
     valid, response = User.objects.validatelogin(request.POST)
+    #print request.POST
     if valid == False:
         for error in response:
             messages.error(request, error)
